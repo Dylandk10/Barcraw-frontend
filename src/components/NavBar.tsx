@@ -6,9 +6,9 @@ import acme from "../assets/acme.png";
 // need to figure out how to set current true since the nav is using react-router we cannot use the typical current with aria-control
 const navigation = [
     { name: 'Home', to: "/", current: false },
-    { name: 'Dashboard', to: '/dashboard', current: false },
+    { name: 'Bars', to: '/bars', current: false },
+    { name: 'Bar Map', to: '/barmap', current: false },
     { name: 'Team', to: '/team', current: false },
-    { name: 'About', to: '/about', current: false },
 ]
 
 export default function NavBar() {

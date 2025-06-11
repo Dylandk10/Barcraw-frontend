@@ -2,8 +2,8 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
-import DashboardPage from './pages/DashBoard';
-import AboutPage from './pages/AboutPage';
+import BarPage from './pages/Bars';
+import BarMapPage from './pages/BarMap';
 import TeamPage from './pages/TeamPage';
 
 function App() {
@@ -13,9 +13,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/bars" element={<BarPage />} />
         <Route path="/team" element={<TeamPage />} />
-        <Route path="/about" element={<AboutPage />} />
+        <Route path="/barmap" element={<BarMapPage />} />
 
       </Routes>
     </BrowserRouter>
