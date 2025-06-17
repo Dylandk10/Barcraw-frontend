@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import BarPage from './pages/Bars';
 import BarMapPage from './pages/BarMap';
 import TeamPage from './pages/TeamPage';
+import Login from './pages/Login';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/bars" element={<BarPage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/barmap" element={<BarMapPage />} />
+        <Route path="/login" element={<Login />} />
 
       </Routes>
     </BrowserRouter>

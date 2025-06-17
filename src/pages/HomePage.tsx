@@ -1,4 +1,3 @@
-import { Button } from "@headlessui/react";
 import beers from "../assets/Beerss.jpg";
 import cocktals from "../assets/cocktails.jpg";
 
@@ -6,11 +5,12 @@ export default function HomePage() {
   return (
     <div className="w-full pt-16">
       {/* hero image and great message*/}
-      <div className="flex justify-center items-center w-full bg-hero-image bg-cover bg-no-repeat h-96">
-        <h1 className="text-6xl text-center text-white font-mono bg-black bg-opacity-50 p-12">
-          {" "}
-          Welcome to BarCrawl{" "}
-        </h1>
+      <div className="flex justify-center items-center w-full h-96 bg-hero-image bg-cover bg-no-repeat relative">
+        {/* Overlay container */}
+        <div className="bg-black bg-opacity-85 text-white text-center p-8 rounded-lg max-w-3xl">
+          <h1 className="text-6xl font-mono mb-4">Welcome to BarCrawl</h1>
+          <span className="text-md">The next social app for a night out!</span>
+        </div>
       </div>
 
       {/* What is barcrawl section*/}
@@ -76,43 +76,62 @@ export default function HomePage() {
 
       <div className="p-12 w-full">
         <h3 className="text-3xl text-center font-mono pb-10">Instructions</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 bg-gray-100 rounded-lg">
-      {/* Step 1 */}
-      <div className="flex items-start gap-4">
-        <div className="text-white bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">1</div>
-        <div>
-          <h3 className="text-lg font-semibold">Step One</h3>
-          <p className="text-sm text-gray-600">Sign up with an email and password to create your profile.</p>
-        </div>
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 bg-gray-100 rounded-lg">
+          {/* Step 1 */}
+          <div className="flex items-start gap-4">
+            <div className="text-white bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">
+              1
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold">Step One</h3>
+              <p className="text-sm text-gray-600">
+                Sign up with an email and password to create your profile.
+              </p>
+            </div>
+          </div>
 
-      {/* Step 2 */}
-      <div className="flex items-start gap-4">
-        <div className="text-white bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">2</div>
-        <div>
-          <h3 className="text-lg font-semibold">Step Two</h3>
-          <p className="text-sm text-gray-600">Plan a night out and remember to use our Bar's search to find local bars and restaurants near you.</p>
-        </div>
-      </div>
+          {/* Step 2 */}
+          <div className="flex items-start gap-4">
+            <div className="text-white bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">
+              2
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold">Step Two</h3>
+              <p className="text-sm text-gray-600">
+                Plan a night out and remember to use our Bar's search to find
+                local bars and restaurants near you.
+              </p>
+            </div>
+          </div>
 
-      {/* Step 3 */}
-      <div className="flex items-start gap-4">
-        <div className="text-white bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">3</div>
-        <div>
-          <h3 className="text-lg font-semibold">Step Three</h3>
-          <p className="text-sm text-gray-600">Go out and have some fun! But remember to log the bar into the destination and take a picture!</p>
-        </div>
-      </div>
+          {/* Step 3 */}
+          <div className="flex items-start gap-4">
+            <div className="text-white bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">
+              3
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold">Step Three</h3>
+              <p className="text-sm text-gray-600">
+                Go out and have some fun! But remember to log the bar into the
+                destination and take a picture!
+              </p>
+            </div>
+          </div>
 
-      {/* Step 4 */}
-      <div className="flex items-start gap-4">
-        <div className="text-white bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">4</div>
-        <div>
-          <h3 className="text-lg font-semibold">Step Four</h3>
-          <p className="text-sm text-gray-600">Now that the bar is logged and verified with a picture it's time to move onto the next location!</p>
+          {/* Step 4 */}
+          <div className="flex items-start gap-4">
+            <div className="text-white bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">
+              4
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold">Step Four</h3>
+              <p className="text-sm text-gray-600">
+                Now that the bar is logged and verified with a picture it's time
+                to move onto the next location!
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
       </div>
     </div>
   );
