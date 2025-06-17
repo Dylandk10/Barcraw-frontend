@@ -1,7 +1,9 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import acme from "../assets/acme.png";
+import axios from '../services/axios';
+import { useAuth } from '../services/AuthContext';
 
 // need to figure out how to set current true since the nav is using react-router we cannot use the typical current with aria-control
 const navigation = [
@@ -12,6 +14,22 @@ const navigation = [
 ]
 
 export default function NavBar() {
+    const navigate = useNavigate();
+    const {user, setUser } = useAuth();
+
+    const navToLogin = () => {
+        navigate('/login');
+    }
+
+    const handleLogout = async () => {
+        try {
+            await axios.post('/logout', {}, { withCredentials: true });
+            navigate('/login');
+            setUser(null);
+        } catch (error) {
+            console.error('Logout failed', error);
+        }
+  };
 
     return (
         <Disclosure as="nav" className="fixed w-full bg-gray-800 z-50">
@@ -77,10 +95,27 @@ export default function NavBar() {
 
                                 </MenuButton>
                             </div>
+
+                            {user === null ? (
                             <MenuItems
                                 transition
                                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-                            >
+                                >
+                                <MenuItem>
+                                    <button
+                                        onClick={navToLogin}
+                                        className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
+                                    >
+                                        Login
+                                    </button>
+                                </MenuItem>
+                            </MenuItems>
+                            ) : (
+
+                                <MenuItems
+                                transition
+                                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                                >
                                 <MenuItem>
                                     <a
                                         href="#"
@@ -98,14 +133,15 @@ export default function NavBar() {
                                     </a>
                                 </MenuItem>
                                 <MenuItem>
-                                    <a
-                                        href="#"
+                                    <button
+                                        onClick={handleLogout}
                                         className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                                     >
                                         Sign out
-                                    </a>
+                                    </button>
                                 </MenuItem>
                             </MenuItems>
+                            )}
                         </Menu>
                     </div>
                 </div>

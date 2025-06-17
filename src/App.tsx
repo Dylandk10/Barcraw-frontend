@@ -6,6 +6,8 @@ import BarPage from './pages/Bars';
 import BarMapPage from './pages/BarMap';
 import TeamPage from './pages/TeamPage';
 import Login from './pages/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import SignupPage from './pages/SignupPage';
 
 function App() {
 
@@ -14,10 +16,11 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/bars" element={<BarPage />} />
+        <Route path="/bars" element={<ProtectedRoute><BarPage /> </ProtectedRoute> } />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/barmap" element={<BarMapPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="signup" element={<SignupPage />} />
 
       </Routes>
     </BrowserRouter>

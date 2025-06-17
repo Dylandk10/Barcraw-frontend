@@ -1,11 +1,13 @@
 // pages/Login.tsx
 import { useState, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../services/axios';
+import { useAuth } from '../services/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { refreshUser } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async (e: FormEvent) => {
@@ -13,7 +15,8 @@ const Login = () => {
 
     try {
       await axiosInstance.post('/login', { email, password });
-      navigate('/dashboard');
+      navigate('/');
+      refreshUser();
     } catch (err) {
       console.error(err);
       alert('Login failed');
@@ -62,6 +65,13 @@ const Login = () => {
         >
           Login
         </button>
+
+        <p className="text-sm text-center text-gray-600">
+          Need to create an account?{' '}
+          <Link to="/signup" className="text-blue-600 hover:underline">
+            Sign up!
+          </Link>
+        </p>
       </form>
     </div>
   );
