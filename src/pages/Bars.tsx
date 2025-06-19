@@ -5,6 +5,7 @@ interface Bar {
   name: string;
   address: string;
   website: string;
+  tags: string[];
 }
 
 export default function BarPage() {
@@ -86,7 +87,9 @@ export default function BarPage() {
         <div className="w-full lg:w-[70%]">
           {/* Search Form */}
           <form onSubmit={handleSearch} className="mb-6 space-y-4">
-            <h3 className="text-xl font-bold mb-4 text-blue-900">Search for a local bar or restaurant</h3>
+            <h3 className="text-xl font-bold mb-4 text-blue-900">
+              Search for a local bar or restaurant
+            </h3>
             <div className="flex flex-col md:flex-row gap-4">
               <input
                 type="text"
@@ -123,18 +126,43 @@ export default function BarPage() {
                   key={idx}
                   className="border border-blue-800 p-4 rounded shadow hover:shadow-md transition bg-white"
                 >
-                  <h3 className="text-lg font-semibold text-blue-800">
-                    {bar.name}
-                  </h3>
-                  <p className="text-sm text-gray-700">{bar.address}</p>
-                  <a
-                    href={bar.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-blue-600 hover:underline"
-                  >
-                    {bar.website}
-                  </a>
+                  {/* Flex row inside the card */}
+                  <div className="flex justify-between items-start">
+                    {/* Left Side: Card Info */}
+                    <div className="flex-1 pr-4">
+                      <h3 className="text-lg font-semibold text-blue-800">
+                        {bar.name}
+                      </h3>
+                      <p className="text-sm text-gray-700">{bar.address}</p>
+                      <a
+                        href={bar.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-blue-600 hover:underline"
+                      >
+                        {bar.website}
+                      </a>
+                    </div>
+
+                    {/* Right Side: Categories */}
+                    {bar.tags && bar.tags.length > 0 && (
+                      <div className="min-w-[100px]">
+                        <h4 className="text-sm font-medium text-blue-800 mb-1">
+                          Tags
+                        </h4>
+                        <ul className="space-y-1">
+                          {bar.tags.map((tag, tagIdx) => (
+                            <li
+                              key={tagIdx}
+                              className="text-blue-600 text-xs break-words"
+                            >
+                              {tag}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -146,7 +174,9 @@ export default function BarPage() {
 
         {/* Column 2 - 30% */}
         <div className="w-full lg:w-[30%]">
-          <h2 className="text-xl font-bold mb-4 text-blue-900">Local Suggestions</h2>
+          <h2 className="text-xl font-bold mb-4 text-blue-900">
+            Local Suggestions
+          </h2>
           <ul className="space-y-4">
             {localBars.map((bar, idx) => (
               <li
