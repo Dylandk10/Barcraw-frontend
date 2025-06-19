@@ -16,12 +16,13 @@ type User = {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  refreshUser: () => Promise<void>;
+  refreshUser: () => Promise<void>; // open up the method to refresh after a user logs in
   setUser: (user: User | null) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// the function authprovider is a wrapper for the whole app to gain access to these methods and context
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -41,6 +42,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     refreshUser();
   }, []);
 
+
+  //if we need to protect a route we can still pass it as a component like this.
   return (
     <AuthContext.Provider value={{ user, loading, refreshUser, setUser }}>
       {children}
